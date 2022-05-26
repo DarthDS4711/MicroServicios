@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          default-label: config-server
+          uri: https://daniel_ds4711@bitbucket.org/daniel_ds4711/microservicios.git
+          search-paths: config-data
+  application:
+    name: ConfigServer
