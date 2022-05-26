@@ -7,7 +7,7 @@ spring:
       server:
         git:
           default-label: config-server
-          uri: https://daniel_ds4711@bitbucket.org/daniel_ds4711/microservicios.git
+          uri: https://github.com/DarthDS4711/MicroServicios
           search-paths: config-data
   application:
     name: ConfigServer
