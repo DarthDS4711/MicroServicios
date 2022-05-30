@@ -1,0 +1,38 @@
+server:
+  # Puerta por default de la aplicacion
+  port: 8080
+# configuración con el servidor de eureka
+eureka:
+  client: 
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    instance:
+      hostname: localhost
+
+# Puerta de enlace hacia los microservicios
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        #lb es un balanceador de carga que toma la mejor instancia posible
+        # del microservicio a usar
+        - id: usuario-service
+          uri: lb://usuario-service
+          predicates:
+            - Path=/usuario/**
+        - id: carro-service
+          uri: lb://carro-service
+          predicates:
+            - Path=/carro/**
+        - id: moto-service
+          uri: lb://moto-service
+          predicates:
+            - Path=/moto/**
+
+
+
