@@ -16,8 +16,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class UserService {
     
-    private final String urlCar = "http://localhost:8082/carro/usuario/";
-    private final String urlMoto = "http://localhost:8083/moto/usuario/";
+    private final String urlCar = "http://carro-service/carro/usuario/";
+    private final String urlMoto = "http://moto-service/moto/usuario/";
 
     @Autowired
     private RestTemplate RestTemplate;
