@@ -55,8 +55,8 @@ public class UsuarioController {
         return ResponseEntity.ok(cars);
     }
 
-    @GetMapping("/motos/{userId}")
     @CircuitBreaker(name = "motosCB", fallbackMethod = "fallBackGetMotos")
+    @GetMapping("/motos/{userId}")
     public ResponseEntity<List<Moto>> listarMotos(
             @PathVariable("userId") int userId) {
         User user = this.userService.getUsuarioById(userId);
@@ -67,8 +67,8 @@ public class UsuarioController {
         return ResponseEntity.ok(motos);
     }
 
-    @GetMapping("/all/{usuarioID}")
     @CircuitBreaker(name = "todosCB", fallbackMethod = "fallBackGetTodos")
+    @GetMapping("/all/{usuarioID}")
     public ResponseEntity<Map<String, Object>> getAll(
             @PathVariable("usuarioID") int usuarioID) {
         Map<String, Object> resultado = this.userService.getUsuarioAndVehiculos(usuarioID);
@@ -82,8 +82,8 @@ public class UsuarioController {
         return ResponseEntity.ok(newUser);
     }
 
-    @PostMapping("/carro/{usuarioID}")
     @CircuitBreaker(name = "carrosCB", fallbackMethod = "fallBackSaveCarro")
+    @PostMapping("/carro/{usuarioID}")
     public ResponseEntity<Car> guardarCarro(
             @PathVariable("usuarioID") int usuarioID,
             @RequestBody Car car) {
@@ -91,9 +91,9 @@ public class UsuarioController {
         return ResponseEntity.ok(newCar);
     }
 
-    // Notación post con una ruta predefinida 
-    @PostMapping("/moto/{usuarioID}")
+    // Notación post con una ruta predefinida
     @CircuitBreaker(name = "motosCB", fallbackMethod = "fallBackSaveMoto")
+    @PostMapping("/moto/{usuarioID}")
     public ResponseEntity<Moto> guardarMoto(
             // @PathVariable es el parámetro que se agrega a la url
             @PathVariable("usuarioID") int usuarioID,

@@ -1,9 +1,7 @@
 server:
-  # Puerta por default de la aplicacion
   port: 8080
-# configuración con el servidor de eureka
 eureka:
-  client: 
+  client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
@@ -11,7 +9,6 @@ eureka:
     instance:
       hostname: localhost
 
-# Puerta de enlace hacia los microservicios
 spring:
   cloud:
     gateway:
@@ -19,8 +16,6 @@ spring:
         locator:
           enabled: true
       routes:
-        #lb es un balanceador de carga que toma la mejor instancia posible
-        # del microservicio a usar
         - id: usuario-service
           uri: lb://usuario-service
           predicates:
@@ -33,6 +28,3 @@ spring:
           uri: lb://moto-service
           predicates:
             - Path=/moto/**
-
-
-
